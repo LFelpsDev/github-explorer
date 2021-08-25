@@ -4,16 +4,19 @@ import { RepositoryItem } from "./RepositoryItem";
 import "../styles/repositories.scss"
 
 //https://api.github.com/users/LFelpsDev/repos
+interface Repository {
+ name: string;
+}
 
 
 export function RepositoryList() {
-  const [repositories, setRepositories] = useState([])
+  const [repositories, setRepositories] = useState<Repository[]>([])
 
   useEffect(() => {
     fetch('https://api.github.com/users/LFelpsDev/repos')
       .then(response => response.json())
       .then(data => setRepositories(data))
-  }, [])
+  }, []) 
 
   return (
     <section className="repository-list">
